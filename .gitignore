@@ -1,0 +1,16 @@
+# Результати збирання
+bin/
+obj/
+publish/
+
+# Visual Studio / Rider
+.vs/
+.idea/
+*.user
+*.suo
+
+# Логи збоїв
+*.log
+
+# SoundFont важить 142 МБ (ліміт GitHub — 100 МБ); кладеться лише в архів релізу
+FluidR3_GM/*.sf2

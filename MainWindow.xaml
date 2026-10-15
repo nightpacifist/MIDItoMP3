@@ -1,0 +1,60 @@
+﻿<Window x:Class="MIDItoMP3.MainWindow"
+        Icon="main.ico"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        Style="{StaticResource MaterialDesignWindow}"
+        xmlns:local="clr-namespace:MIDItoMP3"
+        mc:Ignorable="d"
+        Title="{Binding [MainTitle], Source={x:Static local:Loc.Instance}}" Height="360" Width="399"
+        AllowDrop="True"
+        DragEnter="Window_DragEnter"
+        DragLeave="Window_DragLeave"
+        Drop="Window_Drop"
+        WindowStartupLocation="CenterScreen">
+    <Grid x:Name="DropBorder">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="75*"/>
+            <RowDefinition Height="75*"/>
+            <RowDefinition Height="75*"/>
+            <RowDefinition Height="75*"/>
+            <RowDefinition Height="45*"/>
+        </Grid.RowDefinitions>
+
+
+        <Button Content="{Binding [SelectFile], Source={x:Static local:Loc.Instance}}" IsEnabled="{Binding IsIdle}"
+                            Click="SelectFile_Click"  HorizontalAlignment="Center" VerticalAlignment="Center" Width="350" Height="50" />
+        <TextBlock Text="{Binding Status}" TextWrapping="Wrap" TextAlignment="Center" HorizontalAlignment="Center" Grid.Row="1" VerticalAlignment="Center" Width="350" Foreground="#FF673AB7" FontWeight="Bold"/>
+
+        <Button Content="{Binding [ConvertMidi], Source={x:Static local:Loc.Instance}}" IsEnabled="{Binding IsIdle}" HorizontalAlignment="Center" VerticalAlignment="Center" Width="350" Height="50" Click="ConvertMidi_Click" Grid.Row="2" Background="#FF4CAF50" BorderBrush="#FF4CAF50"/>
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="3">
+            <Button IsEnabled="{Binding IsIdle}" Width="171" Height="54" Padding="8,4" Margin="0,0,8,0" Background="#FF2196F3" BorderBrush="#FF2196F3" Click="ConvertMov_Click">
+                <Button.ToolTip>
+                    <TextBlock Text="{Binding [MovCompatibleTip], Source={x:Static local:Loc.Instance}}" TextWrapping="Wrap" MaxWidth="280"/>
+                </Button.ToolTip>
+                <StackPanel>
+                    <Viewbox StretchDirection="DownOnly" HorizontalAlignment="Center">
+                        <TextBlock Text="{Binding [MovCompatible], Source={x:Static local:Loc.Instance}}"/>
+                    </Viewbox>
+                    <TextBlock Text="{Binding [MovCompatibleHint], Source={x:Static local:Loc.Instance}}" FontSize="11" Opacity="0.8" HorizontalAlignment="Center"/>
+                </StackPanel>
+            </Button>
+            <Button IsEnabled="{Binding IsIdle}" Width="171" Height="54" Padding="8,4" Background="#FF2196F3" BorderBrush="#FF2196F3" Click="RemuxMov_Click">
+                <Button.ToolTip>
+                    <TextBlock Text="{Binding [MovOriginalTip], Source={x:Static local:Loc.Instance}}" TextWrapping="Wrap" MaxWidth="280"/>
+                </Button.ToolTip>
+                <StackPanel>
+                    <Viewbox StretchDirection="DownOnly" HorizontalAlignment="Center">
+                        <TextBlock Text="{Binding [MovOriginal], Source={x:Static local:Loc.Instance}}"/>
+                    </Viewbox>
+                    <TextBlock Text="{Binding [MovOriginalHint], Source={x:Static local:Loc.Instance}}" FontSize="11" Opacity="0.8" HorizontalAlignment="Center"/>
+                </StackPanel>
+            </Button>
+        </StackPanel>
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="4">
+            <Button Content="{Binding [ToolPathsButton], Source={x:Static local:Loc.Instance}}" IsEnabled="{Binding IsIdle}" Style="{StaticResource MaterialDesignFlatButton}" Click="ToolSettings_Click"/>
+            <Button Content="{Binding [SwitchLanguage], Source={x:Static local:Loc.Instance}}" ToolTip="{Binding [SwitchLanguageTip], Source={x:Static local:Loc.Instance}}" Style="{StaticResource MaterialDesignFlatButton}" Margin="8,0,0,0" Click="SwitchLanguage_Click"/>
+        </StackPanel>
+    </Grid>
+</Window>
